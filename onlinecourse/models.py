@@ -1,8 +1,26 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 
 
+class Course(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Lesson(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+
 class Question(models.Model):
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
 
     def __str__(self):
