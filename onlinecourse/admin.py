@@ -15,12 +15,10 @@ class QuestionInline(admin.TabularInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
-    list_display = ['text']
 
 
 class LessonAdmin(admin.ModelAdmin):
     inlines = [QuestionInline]
-    list_display = ['title']
 
 
 admin.site.register(Course)
